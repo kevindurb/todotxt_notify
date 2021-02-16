@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/kevindurb/todotxt_notify/issues"
   },
-  "homepage": "https://github.com/kevindurb/todotxt_notify#readme"
+  "homepage": "https://github.com/kevindurb/todotxt_notify#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  }
 }

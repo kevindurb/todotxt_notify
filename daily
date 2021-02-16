@@ -1,0 +1,25 @@
+#! /usr/bin/env node
+require('dotenv').config();
+const fetch = require('node-fetch');
+const childProcess = require('child_process');
+const util = require('util');
+
+const exec = util.promisify(childProcess.exec);
+
+const postJson = (url, body) =>
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+(async () => {
+  const {stdout} = await exec(process.env.TODOTXT_CMD);
+  await postJson('https://api.pushover.net/1/messages.json', {
+    token: process.env.APP_TOKEN,
+    user: process.env.USER_TOKEN,
+    message: stdout
+  })
+})();
